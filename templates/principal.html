@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Página Principal{% endblock %}
+
+{% block content %}
+    <h2>Olá, {{ usuario.username }}!</h2>
+    <p>Bem-vindo ao Sistema de Gestão de Estoque.</p>
+
+    <nav>
+        <a href="{% url 'lista_produtos' %}">Cadastro de Produtos</a>
+        <a href="{% url 'gestao_estoque' %}">Gestão de Estoque</a>
+        <a href="{% url 'logout' %}">Sair</a>
+    </nav>
+{% endblock %}

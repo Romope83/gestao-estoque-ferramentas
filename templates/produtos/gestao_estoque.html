@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Gestão de Estoque{% endblock %}
+
+{% block content %}
+    <nav>
+        <a href="{% url 'principal' %}">Voltar à Página Principal</a>
+    </nav>
+    <h2>Gestão de Estoque</h2>
+    <p>Produtos listados em ordem alfabética.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Estoque Atual</th>
+                <th>Estoque Mínimo</th>
+                <th>Movimentação (Entrada/Saída)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for produto in produtos %}
+            <tr>
+                <td>
+                    {{ produto.nome }}
+                    {% if produto.abaixo_do_minimo %}
+                        <br><strong class="alert-warning">(Estoque Baixo!)</strong>
+                    {% endif %}
+                </td>
+                <td>{{ produto.quantidade_estoque }}</td>
+                <td>{{ produto.estoque_minimo }}</td>
+                <td>
+                    <form action="{% url 'movimentar_estoque' produto.pk %}" method="post" style="display: flex; gap: 5px;">
+                        {% csrf_token %}
+                        <input type="number" name="quantidade" placeholder="Qtd" required style="width: 60px;">
+                        
+                        <button type="submit" name="tipo" value="E">Entrada</button>
+                        <button type="submit" name="tipo" value="S">Saída</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">Nenhum produto para gerenciar.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

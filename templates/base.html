@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-M">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Gestão de Estoque{% endblock %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
+        nav { background-color: #333; padding: 10px; margin-bottom: 20px; }
+        nav a { color: white; padding: 10px; text-decoration: none; }
+        nav a:hover { background-color: #555; }
+        .container { max-width: 1000px; margin: auto; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .alert-error { color: red; background-color: #ffe0e0; border: 1px solid red; padding: 10px; margin-bottom: 10px; }
+        .alert-warning { color: #856404; background-color: #fff3cd; border: 1px solid #ffeeba; padding: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        form p { margin-bottom: 15px; }
+        input, select, textarea { width: 95%; padding: 8px; }
+        button { padding: 10px 15px; background-color: #007bff; color: white; border: none; cursor: pointer; }
+        .search-form { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

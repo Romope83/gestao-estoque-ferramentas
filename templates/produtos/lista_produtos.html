@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastro de Produtos{% endblock %}
+
+{% block content %}
+    <nav>
+        <a href="{% url 'principal' %}">Voltar à Página Principal</a>
+    </nav>
+    <h2>Produtos Cadastrados</h2>
+
+    <form method="get" class="search-form">
+        <input type="text" name="busca" placeholder="Buscar por nome ou descrição..." value="{{ query }}">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <a href="{% url 'criar_produto' %}"><button>Novo Produto</button></a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Estoque Atual</th>
+                <th>Estoque Mínimo</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for produto in produtos %}
+            <tr>
+                <td>{{ produto.nome }}</td>
+                <td>{{ produto.descricao|truncatewords:10 }}</td>
+                <td>{{ produto.quantidade_estoque }}</td>
+                <td>{{ produto.estoque_minimo }}</td>
+                <td>
+                    <a href="{% url 'editar_produto' produto.pk %}">Editar</a> |
+                    <a href="{% url 'excluir_produto' produto.pk %}">Excluir</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">Nenhum produto cadastrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
