@@ -3,12 +3,14 @@
 {% block title %}Confirmar Exclusão{% endblock %}
 
 {% block content %}
+<div class="container" style="max-width: 600px;">
     <h2>Confirmar Exclusão</h2>
     <p>Você tem certeza que deseja excluir o produto: <strong>{{ produto.nome }}</strong>?</p>
-    
+
     <form method="post">
         {% csrf_token %}
-        <button type="submit">Sim, Excluir</button>
-        <a href="{% url 'lista_produtos' %}">Cancelar</a>
+        <button type="submit" class="btn btn-danger">Sim, Excluir</button>
+        <a href="{% url 'lista_produtos' %}" class="btn btn-secondary">Cancelar</a>
     </form>
+</div>
 {% endblock %}

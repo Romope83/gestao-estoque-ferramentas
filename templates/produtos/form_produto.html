@@ -3,16 +3,17 @@
 {% block title %}{{ titulo }}{% endblock %}
 
 {% block content %}
+<div class="container">
     <nav>
-        <a href="{% url 'lista_produtos' %}">Voltar para Lista</a>
+        <a href="{% url 'lista_produtos' %}">← Voltar para lista</a>
     </nav>
+    
     <h2>{{ titulo }}</h2>
 
-    <form method="post">
+    <form method="post" style="max-width: 600px;">
         {% csrf_token %}
-        
         {{ form.as_p }}
-        
-        <button type="submit">Salvar</button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
+</div>
 {% endblock %}

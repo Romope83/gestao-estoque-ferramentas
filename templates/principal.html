@@ -3,12 +3,54 @@
 {% block title %}Página Principal{% endblock %}
 
 {% block content %}
-    <h2>Olá, {{ usuario.username }}!</h2>
-    <p>Bem-vindo ao Sistema de Gestão de Estoque.</p>
+<div class="container">
+    <h2>Bem-vindo ao Sistema de Gestão de Estoque</h2>
+    <p>Escolha uma das opções abaixo para começar.</p>
 
-    <nav>
-        <a href="{% url 'lista_produtos' %}">Cadastro de Produtos</a>
-        <a href="{% url 'gestao_estoque' %}">Gestão de Estoque</a>
-        <a href="{% url 'logout' %}">Sair</a>
-    </nav>
+    <style>
+        .nav-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .card {
+            background: #f9f9f9;
+            border: 1px solid var(--cor-borda);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--sombra);
+        }
+        .card h3 {
+            margin-bottom: 0.5rem;
+        }
+        .card a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .card a:hover {
+            text-decoration: none;
+        }
+    </style>
+
+    <div class="nav-cards">
+        <div class="card">
+            <a href="{% url 'lista_produtos' %}">
+                <h3>Cadastrar Produtos</h3>
+                <p>Adicionar, editar e visualizar produtos.</p>
+            </a>
+        </div>
+        <div class="card">
+            <a href="{% url 'gestao_estoque' %}">
+                <h3>Gerenciar Estoque</h3>
+                <p>Controlar entradas e saídas de itens.</p>
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}

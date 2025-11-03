@@ -14,4 +14,6 @@ urlpatterns = [
     # Rotas da Entrega 7
     path('gestao/', views.gestao_estoque, name='gestao_estoque'),
     path('movimentar/<int:pk>/', views.movimentar_estoque, name='movimentar_estoque'),
+
+    
 ]

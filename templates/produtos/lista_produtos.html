@@ -3,17 +3,30 @@
 {% block title %}Cadastro de Produtos{% endblock %}
 
 {% block content %}
+<div class="container">
     <nav>
-        <a href="{% url 'principal' %}">Voltar à Página Principal</a>
+        <a href="{% url 'principal' %}">← Voltar à Página Principal</a>
     </nav>
     <h2>Produtos Cadastrados</h2>
 
+    <style>
+        .search-form {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+        .search-form input {
+            flex-grow: 1;
+            margin-bottom: 0;
+        }
+    </style>
+
     <form method="get" class="search-form">
         <input type="text" name="busca" placeholder="Buscar por nome ou descrição..." value="{{ query }}">
-        <button type="submit">Buscar</button>
+        <button type="submit" class="btn btn-primary">Buscar</button>
     </form>
 
-    <a href="{% url 'criar_produto' %}"><button>Novo Produto</button></a>
+    <a href="{% url 'criar_produto' %}" class="btn btn-success" style="margin-bottom: 1rem;">+ Novo Produto</a>
 
     <table>
         <thead>
@@ -29,12 +42,12 @@
             {% for produto in produtos %}
             <tr>
                 <td>{{ produto.nome }}</td>
-                <td>{{ produto.descricao|truncatewords:10 }}</td>
+                <td>{{ produto.descricao|truncatechars:30 }}</td>
                 <td>{{ produto.quantidade_estoque }}</td>
                 <td>{{ produto.estoque_minimo }}</td>
-                <td>
-                    <a href="{% url 'editar_produto' produto.pk %}">Editar</a> |
-                    <a href="{% url 'excluir_produto' produto.pk %}">Excluir</a>
+                <td style="display: flex; gap: 0.5rem;">
+                    <a href="{% url 'editar_produto' produto.pk %}" class="btn btn-secondary" style="padding: 0.4rem 0.8rem;">Editar</a>
+                    <a href="{% url 'excluir_produto' produto.pk %}" class="btn btn-danger" style="padding: 0.4rem 0.8rem;">Excluir</a>
                 </td>
             </tr>
             {% empty %}
@@ -44,4 +57,5 @@
             {% endfor %}
         </tbody>
     </table>
+</div>
 {% endblock %}

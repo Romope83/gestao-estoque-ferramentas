@@ -132,3 +132,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/principal/' 
 # Para onde o Django redireciona após o logout (Entrega 5)
 LOGOUT_REDIRECT_URL = '/'
+
